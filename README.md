@@ -20,7 +20,7 @@ The syncronization is made more efficient at two points:
 
 ## Try it out
 
-
+Step by step coming soon.
 
 ### Permissions
 
@@ -61,6 +61,13 @@ Update a kubernetes configmap, or as alternative to config maps, but with the sy
 ## Compared to a database?
 
 This is for config and settings, which means a pretty finite and reasonably bounded set. This will depend on your application.  Is the conversion rate of 50 different currencies data or settings?  There is some eye of the beholder work here. As stated earlier - this blends the long running debate about storing settings in files or a database, allowing the application to use a file-based interface, to data remotely managed in a database. Clearly this should not be used for primary application data.
+
+
+
+------
+
+This is not an official Google Product
+
 
 [viper]: https://github.com/spf13/viper
 
