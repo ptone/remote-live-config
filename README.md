@@ -22,18 +22,29 @@ The syncronization is made more efficient at two points:
 
 
 
-## Caveats and TODOs
+### Permissions
 
-### Security
+The current design makes the assumption that this pattern may be used by several services at the same time, and you don't want to allow services to modify config. You need to set up the service account you use to have read-only permission to datastore. If you are using Datastore/Firestore as a primary data-source, it should live in a different project.
 
+You can use a json-key file and set GOOGLE_APPLICATION_CREDENTIALS env var to the path, or use compute implicit service accounts in services like VMs, Cloud Run, etc.
 
+If the sync tool determines it has write permissions, it will quit.
 
-
+## Extensions
 
 ### Extending read-once libraries with live reloading
 
 [viper][] allows hot-reloading of files if they change on disk while the referenced python and nodejs projects do not. Included are relatively simple examples of how to hot-reload the json settings. This can be applied as a live-patching of settings loaded through these other utilities.
 
+### Extending for multiple files
+
+Instead of the utility syncing just one file, it would be relatively easy to watch the whole collection and sync either all files, or any file that already exists on disk.
+
+### Show in Containers/Kubernetes
+
+Show how to use with [multi-process container](https://github.com/ahmetb/multi-process-container).
+
+Update a kubernetes configmap, or as alternative to config maps, but with the sync process running as sidecar container in a pod.
 
 ## Compared to Git?
 
@@ -51,13 +62,8 @@ The syncronization is made more efficient at two points:
 
 This is for config and settings, which means a pretty finite and reasonably bounded set. This will depend on your application.  Is the conversion rate of 50 different currencies data or settings?  There is some eye of the beholder work here. As stated earlier - this blends the long running debate about storing settings in files or a database, allowing the application to use a file-based interface, to data remotely managed in a database. Clearly this should not be used for primary application data.
 
-
-Good examples:
-
- - Variable marketing message text in banner
-
-
 [viper]: https://github.com/spf13/viper
 
 [anyconfig]: https://github.com/lorenwest/node-config/wiki/Configuration-Files
+
 [node-config]: https://github.com/ssato/python-anyconfig
