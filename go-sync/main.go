@@ -39,22 +39,17 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		// log.Println(dsnap.Data())
 		confData, err := json.MarshalIndent(dsnap.Data(), "", "  ")
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
 
-		// jsonStr := string(empData)
 		err = ioutil.WriteFile(p, confData, 0644)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
-
-		// fmt.Println("The JSON data is:")
-		// fmt.Println(jsonStr)
 	}
 
 }
