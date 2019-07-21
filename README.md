@@ -11,7 +11,7 @@ There has long been a [consideration](https://softwareengineering.stackexchange.
 
 This demonstration (repo) blends the two, by using a small utility to sync data in a database, to a config file on disk. This decouples the two approaches, so that the code does not have to know about the database connection.
 
-[ program ] ---  [ file-config ] --- [ sync-tool ] --- [ database ]
+![flow-diagram](https://ptone.github.io/remote-live-config/remote-config.png)
 
 The syncronization is made more efficient at two points:
 
